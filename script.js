@@ -18,7 +18,8 @@ var denver = "Denver";
 
 
     function renderSearch() {
-       
+            $(".state-list").empty();
+
         for (var i = 0; i < countrySearch.length; i++) {
             var listItem = countrySearch[i];
             var listEl = $("<li>");
@@ -58,13 +59,16 @@ $("#search-btn").on("click", function(event) {
         return;
     }
 
-    
-        countrySearch.push(locationText);
-        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + countrySearch + ",us" + "&APPID=" + apiKey;
-
         //add new locations to the array, clear the input
-        // var searchVal = $("#search-bar");
-        // searchVal.innerhtml = "";
+        
+        countrySearch.push(locationText);
+        var searchVal = $("#search-bar");
+        searchVal.val("");
+        
+        for (var i = 0; i < countrySearch.length; i++) {
+        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + countrySearch[i] + ",us" + "&APPID=" + apiKey;
+
+        }
 
     //API call
     $.ajax({
@@ -73,13 +77,18 @@ $("#search-btn").on("click", function(event) {
       }).then(function(response) {
         console.log(response);
         console.log(countrySearch);
-
+        $(".container").append(response.city.name)
+        
       })
     
 
     storedLocations();
     renderSearch();
-
+    clearContainer()
 });
 
+
+function clearContainer() {
+    $(".container").empty();
+}
 
