@@ -107,30 +107,28 @@ $("#search-btn").on("click", function(event) {
         url: queryURL2,
         method: "GET"
       }).then(function(response) {
-        console.log(response.list[0].dt_txt);
+        console.log(response)
+        console.log(response.list[0].dt_txt)
         console.log(response.list[0].main.temp)
         console.log(response.list[0].main.humidity)
 
-        $(".day1").append(response.list[0].dt_txt)
-        $(".day1").append(response.list[0].main.temp)
-        $(".day1").append(response.list[0].main.humidity)
-        $(".day2").append(response.list[1].dt_txt)
-        $(".day2").append(response.list[1].main.temp)
-        $(".day2").append(response.list[1].main.humidity)
-        $(".day3").append(response.list[2].dt_txt)
-        $(".day3").append(response.list[2].main.temp)
-        $(".day3").append(response.list[2].main.humidity)
-        $(".day4").append(response.list[3].dt_txt)
-        $(".day4").append(response.list[3].main.temp)
-        $(".day4").append(response.list[3].main.humidity)
-        $(".day5").append(response.list[4].dt_txt)
-        $(".day5").append(response.list[4].main.temp)
-        $(".day5").append(response.list[4].main.humidity)
-
-
-
-
-
+        
+        
+        $(".day1-temp").append("Temp: " + response.list[0].main.temp)
+        $(".day1-header").append(response.list[0].dt_txt)
+        $(".day1-hum").append("Humidity: " + response.list[0].main.humidity + "%")
+        $(".day2-header").append(response.list[6].dt_txt)
+        $(".day2-temp").append("Temp: " + response.list[6].main.temp)
+        $(".day2-hum").append("Humidity: " + response.list[6].main.humidity + "%")
+        $(".day3-header").append(response.list[14].dt_txt)
+        $(".day3-temp").append("Temp: " + response.list[14].main.temp)
+        $(".day3-hum").append("Humidity: " + response.list[14].main.humidity + "%")
+        $(".day4-header").append(response.list[22].dt_txt)
+        $(".day4-temp").append("Temp: " + response.list[22].main.temp)
+        $(".day4-hum").append("Humidity: " + response.list[22].main.humidity + "%")
+        $(".day5-header").append(response.list[30].dt_txt)
+        $(".day5-temp").append("Temp: " + response.list[30].main.temp)
+        $(".day5-hum").append("Humidity: " + response.list[30].main.humidity + "%")
 
       });
 
@@ -149,5 +147,12 @@ function clearContainer() {
    $(".humidity").remove()
    $(".wind-spead").remove()
    $(".uv-index").remove()
+    // $(".day1").empty()
+    // $(".day2").empty()
+    // $(".day3").empty()
+    // $(".day4").empty()
+    // $(".day5").empty()
+
+
 }
 
