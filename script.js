@@ -66,21 +66,51 @@ $("#search-btn").on("click", function(event) {
         searchVal.val("");
         
         for (var i = 0; i < countrySearch.length; i++) {
-        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + countrySearch[i] + ",us" + "&APPID=" + apiKey;
+        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + countrySearch[i] + ",us" + "&APPID=" + apiKey;
+        var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?q=" + countrySearch[i] + ",us" + "&APPID=" + apiKey;
 
         }
 
-    //API call
+    //API call for current weather
     $.ajax({
         url: queryURL,
         method: "GET"
       }).then(function(response) {
         console.log(response);
         console.log(countrySearch);
-        $(".container").append(response.city.name)
-        
+
+        //create divs in container
+        var cityName = $("<div>");
+        var temp = $("<div>");
+        var humidity = $("<div>");
+        var windspeed = $("<div>");
+        var uvindex = $("<div>");
+
+        //add class to divs
+        cityName.addClass("city-name");
+        temp.addClass("temperature");
+        humidity.addClass("humidity");
+        windspeed.addClass("wind-speed");
+        uvindex.addClass("uv-index");
+
+        //append divs to container and responses
+        $("#current-weather").append(cityName,temp,humidity,windspeed,uvindex);
+        $(".city-name").append(response.name)
+        $(".temperature").append("Temperature: " + response.main.temp);
+        $(".humidity").append("Humidity: " + response.main.humidity + "%");
+        $(".wind-spead").append("Wind Speed: " + response.wind.speed);
+        $(".uv-index").append("UV Index: " + response.weather[0].icon);
+
       })
     
+      $.ajax({
+        url: queryURL2,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+
+      });
+
 
     storedLocations();
     renderSearch();
@@ -89,6 +119,12 @@ $("#search-btn").on("click", function(event) {
 
 
 function clearContainer() {
-    $(".container").empty();
+   
+  
+   $(".city-name").remove()
+   $(".temperature").remove()
+   $(".humidity").remove()
+   $(".wind-spead").remove()
+   $(".uv-index").remove()
 }
 

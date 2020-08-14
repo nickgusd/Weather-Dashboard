@@ -4,26 +4,87 @@ body {
     
 }
 
-.container {
-    width: 500px;
-    height: 200px;
-    display: block;
-    margin: 0 auto;
+header {
+    background-color: black;
+    color: white;
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.forecast-h2 {
+    padding-left: 20px;
+}
+
+
+#current-weather {
     position: relative;
-    bottom: 500px;
-    left: 100px;
+    bottom: 400px;
+}
+
+.container {
+    width: 60%;
+    height: 200px;
+    position: relative;
+    bottom: 500px !important;
+    left: 400px;
     border: 1px solid black;
+
+    
 }
 
 .search-list {
     margin-top: 20px;
-    border: 1px solid black;
-    width: 300px;
+    width: 350px;
     height: 500px;
+    position: relative;
     
+}
+
+ul {
+    position: absolute;
+    width: 20rem;
+    padding-inline-start: 0px;
+    margin: auto;
 }
 
 li {
     list-style-type: none;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    width: 100%;
+    margin: auto;
+
 }
 
+.forecast {
+    width: 60%;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    bottom: 450px;
+    left: 120px;
+    border: 1px solid black;
+    
+    
+}
+
+
+.city-name, .temperature, .humidity, .wind-spead, .uv-index {
+    margin: 10px;
+}
+
+.day1, .day2, .day3, .day4, .day5 {
+    margin-top: 20px;
+    width: 150px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.daywrapper {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
