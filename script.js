@@ -76,7 +76,7 @@ $("#search-btn").on("click", function(event) {
         url: queryURL,
         method: "GET"
       }).then(function(response) {
-        console.log(response);
+        //console.log(response);
         console.log(countrySearch);
 
         //create divs in container
@@ -107,7 +107,30 @@ $("#search-btn").on("click", function(event) {
         url: queryURL2,
         method: "GET"
       }).then(function(response) {
-        console.log(response);
+        console.log(response.list[0].dt_txt);
+        console.log(response.list[0].main.temp)
+        console.log(response.list[0].main.humidity)
+
+        $(".day1").append(response.list[0].dt_txt)
+        $(".day1").append(response.list[0].main.temp)
+        $(".day1").append(response.list[0].main.humidity)
+        $(".day2").append(response.list[1].dt_txt)
+        $(".day2").append(response.list[1].main.temp)
+        $(".day2").append(response.list[1].main.humidity)
+        $(".day3").append(response.list[2].dt_txt)
+        $(".day3").append(response.list[2].main.temp)
+        $(".day3").append(response.list[2].main.humidity)
+        $(".day4").append(response.list[3].dt_txt)
+        $(".day4").append(response.list[3].main.temp)
+        $(".day4").append(response.list[3].main.humidity)
+        $(".day5").append(response.list[4].dt_txt)
+        $(".day5").append(response.list[4].main.temp)
+        $(".day5").append(response.list[4].main.humidity)
+
+
+
+
+
 
       });
 
