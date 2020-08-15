@@ -58,6 +58,11 @@ li {
 
 }
 
+img {
+    position: relative;
+    top: 20px;
+}
+
 .forecast {
     width: 60%;
     height: 400px;
@@ -75,6 +80,14 @@ li {
     margin: 10px;
 }
 
+.city-name {
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
 .day1, .day2, .day3, .day4, .day5 {
     margin-top: 20px;
     width: 150px;
@@ -84,6 +97,7 @@ li {
     color: white;
     font-weight: bold;
     border-radius: 5%;
+    text-align: center;
 }
 
 .daywrapper {
@@ -91,3 +105,4 @@ li {
     flex-direction: row;
     justify-content: space-evenly;
 }
+
