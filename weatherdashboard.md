@@ -17,6 +17,13 @@ I can click on a city in the search history and I am again presented with curren
 
 <img src="weatherdashboard.png" alt="weatherdashboard">
 
+
+## links
+
+https://nickgusd.github.io/Weather-Dashboard/
+https://github.com/nickgusd/Weather-Dashboard
+
+
 ## Note
 
 The dashboard looks best on a 1440px x 821px device
