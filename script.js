@@ -1,31 +1,6 @@
 var apiKey = "f406869994fe9cee8d7422cf86700d9f"
 var denver = "Denver";
 
-function temperatureConverter(num) {
-    // Num = parseFloat(Num);
-    var tofixed = (num-273.15)*1.8+ 32
-    document.querySelector(".fahrenheit").innerHTML=("Temp: " + tofixed.toFixed(2) + " &#8457")
-    return num;
-
-  }
-
-
-
-
-
-
-
-
-//var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + countrySearch + ",us" + "&APPID=" + apiKey;
-
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-//   }).then(function(response) {
-//     console.log(response);
-
-
-//   })
 
     var countrySearch = [];
 
@@ -112,16 +87,15 @@ $("#search-btn").on("click", function(event) {
         uvindex.addClass("uv-index");
 
         //append divs to container and responses
+        var currentTemp = (((response.main.temp -273) * 9/5) + 32).toFixed(2)
         $("#current-weather").append(cityName,temp,humidity,windspeed,uvindex);
         var currentImg = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
         $(".city-name").append(response.name + " " + moment().format("MMM Do YY"), currentImg);
-        $(".temperature").append("Temperature: " + temperatureConverter(response.main.temp));
+        $(".temperature").append("Temperature: " + currentTemp);
         $(".humidity").append("Humidity: " + response.main.humidity + "%");
         $(".wind-spead").append("Wind Speed: " + response.wind.speed);
         $(".uv-index").append("UV Index: " + response.weather[0].icon);
        
-       
-
       })
     
       $.ajax({
@@ -132,8 +106,12 @@ $("#search-btn").on("click", function(event) {
         // console.log(response.list[0].dt_txt)
         // console.log(response.list[0].main.temp)
         // console.log(response.list[0].main.humidity)
-
-        
+         
+        var temp1 = (((response.list[0].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp2 = (((response.list[6].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp3 = (((response.list[14].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp4 = (((response.list[22].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp5 = (((response.list[30].main.temp -273) * 9/5) + 32).toFixed(2)
 
         var imgEl1 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png");
         var imgEl2 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[6].weather[0].icon + ".png");
@@ -141,25 +119,25 @@ $("#search-btn").on("click", function(event) {
         var imgEl4 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[22].weather[0].icon + ".png");
         var imgEl5 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[30].weather[0].icon + ".png");
 
-        $(".day1-temp").append("Temp: " + temperatureConverter(response.list[0].main.temp));
+        $(".day1-temp").append("Temp: " + temp1);
         $(".day1-icon").append(imgEl1);
         //$(".day1-header").append(response.list[0].dt_txt)
         $(".day1-hum").append("Humidity: " + response.list[0].main.humidity + "%")
         //$(".day2-header").append(response.list[6].dt_txt)
         $(".day2-icon").append(imgEl2);
-        $(".day2-temp").append("Temp: " + temperatureConverter(response.list[6].main.temp));
+        $(".day2-temp").append("Temp: " + temp2);
         $(".day2-hum").append("Humidity: " + response.list[6].main.humidity + "%")
         //$(".day3-header").append(response.list[14].dt_txt)
         $(".day3-icon").append(imgEl3);
-        $(".day3-temp").append("Temp: " + temperatureConverter(response.list[14].main.temp))
+        $(".day3-temp").append("Temp: " + temp3)
         $(".day3-hum").append("Humidity: " + response.list[14].main.humidity + "%")
         //$(".day4-header").append(response.list[22].dt_txt)
         $(".day4-icon").append(imgEl4);
-        $(".day4-temp").append("Temp: " + temperatureConverter(response.list[22].main.temp))
+        $(".day4-temp").append("Temp: " + temp4)
         $(".day4-hum").append("Humidity: " + response.list[22].main.humidity + "%")
         //$(".day5-header").append(response.list[30].dt_txt)
         $(".day5-icon").append(imgEl5);
-        $(".day5-temp").append("Temp: " + temperatureConverter(response.list[30].main.temp))
+        $(".day5-temp").append("Temp: " + temp5)
         $(".day5-hum").append("Humidity: " + response.list[30].main.humidity + "%")
 
        
@@ -169,23 +147,23 @@ $("#search-btn").on("click", function(event) {
         
         $(".day1-header").append(`${month}-${day}-${year }`)
         
-        const date2 = new Date(response.list[6].dt_txt)
+        const date2 = new Date(response.list[7].dt_txt)
         const dateTimeFormat2 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
         const [{ value: month2 },,{ value: day2 },,{ value: year2 }] = dateTimeFormat2 .formatToParts(date2 ) 
          $(".day2-header").append(`${month2}-${day2}-${year2 }`)
 
-        const date3 = new Date(response.list[14].dt_txt)
+        const date3 = new Date(response.list[17].dt_txt)
         const dateTimeFormat3 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
         const [{ value: month3 },,{ value: day3 },,{ value: year3 }] = dateTimeFormat3 .formatToParts(date3 ) 
         $(".day3-header").append(`${month3}-${day3}-${year3 }`)
 
 
-        const date4 = new Date(response.list[22].dt_txt)
+        const date4 = new Date(response.list[24].dt_txt)
         const dateTimeFormat4 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
         const [{ value: month4 },,{ value: day4 },,{ value: year4 }] = dateTimeFormat4 .formatToParts(date4) 
         $(".day4-header").append(`${month4}-${day4}-${year4 }`)
 
-        const date5 = new Date(response.list[30].dt_txt)
+        const date5 = new Date(response.list[32].dt_txt)
         const dateTimeFormat5 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
         const [{ value: month5 },,{ value: day5},,{ value: year5 }] = dateTimeFormat5 .formatToParts(date5) 
         $(".day5-header").append(`${month5}-${day5}-${year5 }`)
@@ -260,10 +238,11 @@ $(".cities").on("click", function(event) {
          uvindex.addClass("uv-index");
  
          //append divs to container and responses
+         var currentTemp2 = (((response.main.temp -273) * 9/5) + 32).toFixed(2)
          $("#current-weather").append(cityName,temp,humidity,windspeed,uvindex);
          var currentImg = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
          $(".city-name").append(response.name + " " + moment().format("MMM Do YY"), currentImg);
-         $(".temperature").append("Temperature: " + response.main.temp);
+         $(".temperature").append("Temperature: " + currentTemp2);
          $(".humidity").append("Humidity: " + response.main.humidity + "%");
          $(".wind-spead").append("Wind Speed: " + response.wind.speed);
          $(".uv-index").append("UV Index: " + response.weather[0].icon);
@@ -281,32 +260,67 @@ $(".cities").on("click", function(event) {
         console.log(response.list[0].main.temp)
         console.log(response.list[0].main.humidity)
 
+        var temp1 = (((response.list[0].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp2 = (((response.list[6].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp3 = (((response.list[14].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp4 = (((response.list[22].main.temp -273) * 9/5) + 32).toFixed(2)
+        var temp5 = (((response.list[30].main.temp -273) * 9/5) + 32).toFixed(2)
+
         var imgEl1 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png");
         var imgEl2 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[6].weather[0].icon + ".png");
         var imgEl3 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[14].weather[0].icon + ".png");
         var imgEl4 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[22].weather[0].icon + ".png");
         var imgEl5 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[30].weather[0].icon + ".png");
 
-        $(".day1-temp").append("Temp: " + response.list[0].main.temp)
+        $(".day1-temp").append("Temp: " + temp1);
         $(".day1-icon").append(imgEl1);
-        $(".day1-header").append(response.list[0].dt_txt)
+        //$(".day1-header").append(response.list[0].dt_txt)
         $(".day1-hum").append("Humidity: " + response.list[0].main.humidity + "%")
-        $(".day2-header").append(response.list[6].dt_txt)
+        //$(".day2-header").append(response.list[6].dt_txt)
         $(".day2-icon").append(imgEl2);
-        $(".day2-temp").append("Temp: " + response.list[6].main.temp)
+        $(".day2-temp").append("Temp: " + temp2);
         $(".day2-hum").append("Humidity: " + response.list[6].main.humidity + "%")
-        $(".day3-header").append(response.list[14].dt_txt)
+        //$(".day3-header").append(response.list[14].dt_txt)
         $(".day3-icon").append(imgEl3);
-        $(".day3-temp").append("Temp: " + response.list[14].main.temp)
+        $(".day3-temp").append("Temp: " + temp3)
         $(".day3-hum").append("Humidity: " + response.list[14].main.humidity + "%")
-        $(".day4-header").append(response.list[22].dt_txt)
+        //$(".day4-header").append(response.list[22].dt_txt)
         $(".day4-icon").append(imgEl4);
-        $(".day4-temp").append("Temp: " + response.list[22].main.temp)
+        $(".day4-temp").append("Temp: " + temp4)
         $(".day4-hum").append("Humidity: " + response.list[22].main.humidity + "%")
-        $(".day5-header").append(response.list[30].dt_txt)
+        //$(".day5-header").append(response.list[30].dt_txt)
         $(".day5-icon").append(imgEl5);
-        $(".day5-temp").append("Temp: " + response.list[30].main.temp)
+        $(".day5-temp").append("Temp: " + temp5)
         $(".day5-hum").append("Humidity: " + response.list[30].main.humidity + "%")
+
+
+        const date = new Date(response.list[0].dt_txt,)
+        const dateTimeFormat = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
+        const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(date ) 
+        
+        $(".day1-header").append(`${month}-${day}-${year }`)
+        
+        const date2 = new Date(response.list[7].dt_txt)
+        const dateTimeFormat2 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
+        const [{ value: month2 },,{ value: day2 },,{ value: year2 }] = dateTimeFormat2 .formatToParts(date2 ) 
+         $(".day2-header").append(`${month2}-${day2}-${year2 }`)
+
+        const date3 = new Date(response.list[17].dt_txt)
+        const dateTimeFormat3 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
+        const [{ value: month3 },,{ value: day3 },,{ value: year3 }] = dateTimeFormat3 .formatToParts(date3 ) 
+        $(".day3-header").append(`${month3}-${day3}-${year3 }`)
+
+
+        const date4 = new Date(response.list[24].dt_txt)
+        const dateTimeFormat4 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
+        const [{ value: month4 },,{ value: day4 },,{ value: year4 }] = dateTimeFormat4 .formatToParts(date4) 
+        $(".day4-header").append(`${month4}-${day4}-${year4 }`)
+
+        const date5 = new Date(response.list[32].dt_txt)
+        const dateTimeFormat5 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
+        const [{ value: month5 },,{ value: day5},,{ value: year5 }] = dateTimeFormat5 .formatToParts(date5) 
+        $(".day5-header").append(`${month5}-${day5}-${year5 }`)
+
 
       });
 
