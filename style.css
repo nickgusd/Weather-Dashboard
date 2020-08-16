@@ -4,6 +4,11 @@ body {
     
 }
 
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .dashboard-header {
     background-color: black;
     color: white;
@@ -14,28 +19,14 @@ body {
 
 .forecast-h2 {
     padding-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-
-#current-weather {
-    position: relative;
-    bottom: 400px;
-}
-
-.container {
-    width: 60%;
-    height: 200px;
-    position: relative;
-    bottom: 500px !important;
-    left: 400px;
-    border: 1px solid black;
-
-    
-}
 
 .search-list {
     margin-top: 20px;
-    width: 350px;
+    width: 320px;
     height: 500px;
     position: relative;
     
@@ -58,22 +49,11 @@ li {
 
 }
 
-img {
-    position: relative;
-    top: 20px;
-}
 
-.forecast {
-    width: 60%;
-    height: 400px;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    bottom: 450px;
-    left: 120px;
-    border: 1px solid black;
+ .forecast {
+   margin-top: 40px;
     
-}
+} 
 
 
 .city-name, .temperature, .humidity, .wind-spead, .uv-index {
@@ -89,7 +69,7 @@ img {
 
 
 .day1, .day2, .day3, .day4, .day5 {
-    margin-top: 20px;
+    margin: 20px 5px;
     width: 150px;
     height: 200px;
     border: 1px solid black;
@@ -111,7 +91,14 @@ header {
 }
 
 button {
-    background-color: blue;
-    color: white;
+    background-color: blue !important;
+    color: white !important;
 }
 
+.col-md-4 {
+    border: 1px solid black;
+}
+
+.col-md-8 {
+    border: 1px solid black;
+}

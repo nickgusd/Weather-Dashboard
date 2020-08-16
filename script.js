@@ -18,8 +18,7 @@ var denver = "Denver";
             listEl.attr("data-name",listItem)
             listEl.addClass("cities");
             $(".state-list").append(listEl);
-            // var dataName = $(this).attr("data-name", i);
-            // listEl.append(dataName);
+            
         }
     }
 
@@ -152,7 +151,7 @@ $("#search-btn").on("click", function(event) {
         const [{ value: month2 },,{ value: day2 },,{ value: year2 }] = dateTimeFormat2 .formatToParts(date2 ) 
          $(".day2-header").append(`${month2}-${day2}-${year2 }`)
 
-        const date3 = new Date(response.list[17].dt_txt)
+        const date3 = new Date(response.list[13].dt_txt)
         const dateTimeFormat3 = new Intl.DateTimeFormat('en', { month: 'short', day: '2-digit',year: 'numeric' }) 
         const [{ value: month3 },,{ value: day3 },,{ value: year3 }] = dateTimeFormat3 .formatToParts(date3 ) 
         $(".day3-header").append(`${month3}-${day3}-${year3 }`)
@@ -187,6 +186,8 @@ function clearContainer() {
    $(".wind-spead").remove()
    $(".uv-index").remove()
 
+    
+    
     $(".day1-temp").empty()
     $(".day1-icon").empty()
     $(".day1-header").empty()
