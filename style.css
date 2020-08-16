@@ -29,6 +29,8 @@ h2 {
     width: 320px;
     height: 500px;
     position: relative;
+    display: block;
+    margin: 0 auto;
     
 }
 
